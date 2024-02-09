@@ -9,34 +9,34 @@ export default {
 <template>
   <header>
 
-    <div>
+    <div class="container">
 
       <figure>
         <img src="../assets/img/Yu-Gi-Oh!.png" alt="Yu-Gi-Oh Logo">
       </figure>
-      <h1>Yu-Gi-Oh Api</h1>
+      <h3>Yu-Gi-Oh Api</h3>
 
     </div>
   </header>
 </template>
 
 <style scoped>
-
 header {
 
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   padding-block: 30px;
+  color: white;
 
   div {
 
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 80%;
-    margin: 0 auto;
 
     figure {
 
-      width: 100px;
+      width: 200px;
+      margin-bottom: 10px;
     }
   }
 
