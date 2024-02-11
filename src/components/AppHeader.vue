@@ -20,7 +20,7 @@ export default {
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 header {
 
   background-color: rgb(0, 0, 0);
