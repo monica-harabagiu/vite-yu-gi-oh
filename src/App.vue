@@ -19,18 +19,31 @@ export default {
 
       store.loading = true
 
+      store.apiUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
+
+      if (store.selectValue !== "all") {
+        store.apiUrl += `?archetype=${store.selectValue}`
+      } else {
+        store.apiUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
+      }
+
+      axios
+        .get(store.apiArchetype)
+        .then(res => {
+          store.cardsArchetype = res.data
+        })
+
       setTimeout(() => {
-        
         axios
           .get(store.apiUrl)
           .then(res => {
             console.log(res.data)
             store.yugiCards = res.data.data
-  
+
             store.loading = false
           })
       }, 2000)
-    }
+    },
   },
   mounted() {
     this.getCards()
@@ -40,7 +53,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain />
+  <AppMain @filter="getCards" />
 </template>
 
 <style lang="scss">

@@ -24,8 +24,14 @@ export default {
         <div class="container">
 
             <div class="header-category">
-                <select name="card-categories" id="category-select">
-                    <option value="Alien">Alien</option>
+                <select 
+                @change="$emit('filter')"
+                v-model="store.selectValue" 
+                name="card-categories" 
+                id="category-select">
+                    <option selected value="all">All</option>
+                    <option v-for="(element, index) in store.cardsArchetype" :key="index" :value="element.archetype_name">{{
+                        element.archetype_name }}</option>
                 </select>
 
                 <div class="header-cards-counter">
@@ -33,14 +39,17 @@ export default {
                 </div>
             </div>
 
+            <AppLoader v-if="(store.loading)" />
 
-            <div class="cards">
+            <div v-else class="cards">
 
-                <AppLoader v-if="(store.loading)" />
 
-                <SingleCard v-for="(element, index) in store.yugiCards" :key="index"
-                    :propsImgUrl="element.card_images[0].image_url" :propsName="element.name"
-                    :propsArchetype="element.archetype" />
+                <SingleCard 
+                v-for="(element, index) in store.yugiCards" 
+                :key="index"
+                :propsImgUrl="element.card_images[0].image_url" 
+                :propsName="element.name"
+                :propsArchetype="element.archetype" />
 
             </div>
 
